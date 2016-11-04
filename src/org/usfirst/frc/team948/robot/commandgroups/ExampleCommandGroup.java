@@ -19,6 +19,8 @@ public class ExampleCommandGroup extends CommandGroup {
 		addParallel(new ExampleCommand()); //Command 2
 		addSequential(new ExampleCommand()); //Command 3
 		//After the last command (or all of the last parrallel batch of commands) are finished running the command group is done
+		//Command groups require all the subsystems commands added by them require
+		//If a command group is interupted all of the commands it has scheduled will be interupted
 	}
 
 }

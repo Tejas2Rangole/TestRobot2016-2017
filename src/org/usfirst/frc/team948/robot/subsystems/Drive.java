@@ -51,22 +51,22 @@ public class Drive extends Subsystem implements PIDOutput {
 
 	public void rawTankDrive(double leftPower, double rightPower) {
 
-		RobotMap.motorFrontLeft.set(leftPower);
-		RobotMap.motorFrontRight.set(-1 * rightPower);
-		RobotMap.motorBackLeft.set(leftPower);
-		RobotMap.motorBackRight.set(-1 * rightPower);
+		RobotMap.frontLeftMotor.set(leftPower);
+		RobotMap.frontRightMotor.set(-1 * rightPower);
+		RobotMap.backLeftMotor.set(leftPower);
+		RobotMap.backRightMotor.set(-1 * rightPower);
 
 	}
 
 	public void rawStop() {
-		RobotMap.motorBackLeft.disable();
-		RobotMap.motorBackRight.disable();
-		RobotMap.motorFrontLeft.disable();
-		RobotMap.motorFrontRight.disable();
+		RobotMap.backLeftMotor.disable();
+		RobotMap.backRightMotor.disable();
+		RobotMap.frontLeftMotor.disable();
+		RobotMap.frontRightMotor.disable();
 	}
 
 	public void setDesiredHeadingFromGyro() {
-		setDesiredHeading(RobotMap.driveGyro.getAngle());
+		setDesiredHeading(RobotMap.robotGyro.getAngle());
 	}
 	
 	public double getDesiredHeading() {
@@ -78,13 +78,13 @@ public class Drive extends Subsystem implements PIDOutput {
 	}
 	
 	public double drivePIDInit(double p, double i, double d, double maxOutput) {
-		drivePID = new PIDController(p, i, d, (PIDSource)RobotMap.driveGyro, this);
+		drivePID = new PIDController(p, i, d, (PIDSource)RobotMap.robotGyro, this);
 		drivePID.reset();
 		drivePID.setOutputRange(-Math.abs(maxOutput), Math.abs(maxOutput));
 		PIDOutput = 0;
 		drivePID.enable();
 		System.out.println("Drive P:" + p + " I:" + i + " D:" + d);
-		return RobotMap.driveGyro.getAngle();
+		return RobotMap.robotGyro.getAngle();
 	}
 
 	@Override
@@ -103,7 +103,7 @@ public class Drive extends Subsystem implements PIDOutput {
 	public void driveOnHeading(double power, double heading) {
 		drivePID.setSetpoint(heading);
 
-		double error = heading - RobotMap.driveGyro.getAngle();
+		double error = heading - RobotMap.robotGyro.getAngle();
 		double outputRange = MathHelper.clamp(PID_MIN_OUTPUT
 				+ (Math.abs(error) / 15.0) * (PID_MAX_OUTPUT - PID_MIN_OUTPUT),
 				0, PID_MAX_OUTPUT);

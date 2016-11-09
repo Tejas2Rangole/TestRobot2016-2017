@@ -20,4 +20,5 @@ public class RobotMap {
 	public static Victor frontLeftMotor = new Victor(2);
 	public static Victor backRightMotor = new Victor(1);
 	public static Victor fromRightMotor = new Victor(0);
+	public static AHRSGyro robotGyro = new AHRSGyro();
 }

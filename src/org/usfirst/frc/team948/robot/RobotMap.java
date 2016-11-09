@@ -21,4 +21,8 @@ public class RobotMap {
 	public static Victor backRightMotor = new Victor(1);
 	public static Victor fromRightMotor = new Victor(0);
 	public static AHRSGyro robotGyro = new AHRSGyro();
+	//To check values
+	public static Encoder rightEncoder = new Encoder(0,1,false,EncodingType.k4X);
+	//To check values
+	public static Encoder leftEncoder = new Encoder(2,3,false,EncodingType.k4X);
 }

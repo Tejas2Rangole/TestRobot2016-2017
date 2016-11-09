@@ -44,25 +44,25 @@ public class Drive extends Subsystem implements PIDOutput {
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
-		setDefaultCommand(new ManualDrive());
+		setDefaultCommand(new ManualDriveStrait());
 	}
 
 	
 
 	public void rawTankDrive(double leftPower, double rightPower) {
 
-		RobotMap.motorFrontLeft.set(leftPower);
-		RobotMap.motorFrontRight.set(-1 * rightPower);
-		RobotMap.motorBackLeft.set(leftPower);
-		RobotMap.motorBackRight.set(-1 * rightPower);
+		RobotMap.frontLeftMotor.set(leftPower);
+		RobotMap.frontRightMotor.set(-1 * rightPower);
+		RobotMap.backLeftMotor.set(leftPower);
+		RobotMap.backRightMotor.set(-1 * rightPower);
 
 	}
 
 	public void rawStop() {
-		RobotMap.motorBackLeft.disable();
-		RobotMap.motorBackRight.disable();
-		RobotMap.motorFrontLeft.disable();
-		RobotMap.motorFrontRight.disable();
+		RobotMap.backLeftMotor.disable();
+		RobotMap.backRightMotor.disable();
+		RobotMap.frontLeftMotor.disable();
+		RobotMap.frontRightMotor.disable();
 	}
 
 	public void setDesiredHeadingFromGyro() {

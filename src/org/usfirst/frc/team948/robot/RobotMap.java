@@ -20,6 +20,8 @@ public class RobotMap {
 	public static Victor frontLeftMotor = new Victor(2);
 	public static Victor backRightMotor = new Victor(1);
 	public static Victor fromRightMotor = new Victor(0);
+	//may be wrong thing that AHRS is constructed with
+	public static AHRS robotAHRS = new AHRS(SPI.Port.kMXP);
 	public static AHRSGyro robotGyro = new AHRSGyro();
 	//To check values
 	public static Encoder rightEncoder = new Encoder(0,1,false,EncodingType.k4X);
